@@ -9,7 +9,7 @@ def home():
 
 @app.route('/kontakti')
 def kontakti():
-    return "<html><h1>Kontakti</h1><p>Jānis  Graudiņš</p></html>"
+    return render_template('kontakti.html')
 
 if __name__ == '__main__':
     app.run(port=80, debug=True)
