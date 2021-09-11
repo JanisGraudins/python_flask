@@ -19,6 +19,8 @@ def par_mani():
 def jaunumi():
     return render_template('jaunumi.html')
 
+
+
 if __name__ == '__main__':
     app.run(port=80, debug=True)
 
