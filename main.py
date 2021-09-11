@@ -15,6 +15,10 @@ def kontakti():
 def par_mani():
     return render_template('par_mani.html')
 
+@app.route('/jaunumi')
+def jaunumi():
+    return render_template('jaunumi.html')
+
 if __name__ == '__main__':
     app.run(port=80, debug=True)
 
