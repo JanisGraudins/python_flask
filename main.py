@@ -1,4 +1,5 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect
+from file_proc import pievienot
 
 app = Flask(__name__)
 
@@ -19,7 +20,17 @@ def par_mani():
 def jaunumi():
     return render_template('jaunumi.html')
 
-
+@app.route('/postdata', methods = ['POST', 'GET'])
+def postdata():
+    if request.method == 'GET':
+        return redirect('/')
+    elif request.method == 'POST':
+        #print(request.form)
+        vards = request.form.get('vards')
+        pievienot(vards)
+        return redirect('/kontakti')
+    else:
+        return "Nevajag Tev"
 
 if __name__ == '__main__':
     app.run(port=80, debug=True)

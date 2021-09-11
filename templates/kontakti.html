@@ -1,7 +1,13 @@
 {% extends "layout.html" %}
 
+{% set aktiva_lapa = 'kontakti' %}
+
 {% block saturs %}
-<h1>Kontakti</h1>
-<p>Jānis Graudiņš</p>
+<h1 style="text-align:center">Kontakti</h1>
+<p><p class="fs-5 col-md-8">Jānis Graudiņš</p>
+<form method="POST" action='/postdata'>
+    <label>Vārds: <input type="text" name="vards"></label>
+    <input type="submit" value="submit">
+</form>
 {% endblock %}
     
