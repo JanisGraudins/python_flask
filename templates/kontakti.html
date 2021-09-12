@@ -4,10 +4,33 @@
 
 {% block saturs %}
 <h1 style="text-align:center">Kontakti</h1>
-<p><p class="fs-5 col-md-8">Jānis Graudiņš</p>
-<form method="POST" action='/postdata'>
-    <label>Vārds: <input type="text" name="vards"></label>
-    <input type="submit" value="submit">
-</form>
+</br>
+<h3 style="text-align: center; color: rgb(31, 31, 206);"> Lūdzu ievadi prasītos datu laukus, lai manam Eksāmena darbam Progresīvajās programmēšanas metodes būtu dati, ko attēlot tabulā! </h3>
+<br>
+
+<form action="/form" method="POST">
+    <div class="mb-3">
+      
+      <input type="text" class="form-control" id="lauks1" 
+      placeholder="Vārds" name="vards"
+    </div>
+</br>
+    <div class="mb-3">
+        <input type="text" class="form-control" id="lauks2" 
+        placeholder="Uzvārds" name="uzvards"
+        
+    </div>
+</br>
+      <div class="mb-3">
+       <input type="email" class="form-control" id="lauks3" 
+        placeholder="E-pasta adrese" name="epasts"
+    </div>
+    
+ </br>
+    
+    <button type="submit" class="btn btn-secondary">Nosūtīt</button>
+  </form>
+
+  <img src="/static/favicon/favicon-96x96.png" class="center" alt="Pitons">
 {% endblock %}
     
