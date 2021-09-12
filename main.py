@@ -1,10 +1,32 @@
 from flask import Flask, render_template, request, redirect
 from flask.scaffold import F
 from file_proc import pievienot
-
-dati = []
+from flask_sqlalchemy import SQLAlchemy
+from datetime import datetime
 
 app = Flask(__name__)
+
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.ieraksti'
+
+
+db = SQLAlchemy(app)
+dati = []
+
+
+
+
+
+class Ieraksti(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    vards = db.Column(db.String(100), nullable=False)
+    uzvards = db.Column(db.String(100), nullable=False)
+    epasts = db.Column(db.String(100), nullable=False)
+    datums = db.Column(db.DateTime, default=datetime.now)
+    def __repr__(self):
+        return '<Vards %r>' % self.id
+
+
 
 @app.route('/')
 def home():
