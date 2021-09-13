@@ -33,27 +33,44 @@
 
     <!-- Custom styles for this template -->
     <link href="/static/css/starter-template.css" rel="stylesheet">
-</head>
 
-<body>
-    <div class="col-lg-8 mx-auto p-3 py-md-5">
-                    <header class="p3 bg-dark text-white d-felx flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
-                <ul class="nav nav-pills">
+
+<header>
+    <div>                  
+                <nav class="navbar navbar-dark bg-dark">
+                    <div class="container">
+                        <a class="navbar-brand" >
+                          <img src="/static/favicon/android-icon-72x72.png " alt="" width="72" height="72">
+                        </a>
+                      </div>
                     <li class="nav-item"><a href="/"
-                            class="nav-link {% if aktiva_lapa == 'home' %} active {% endif %}">Sākums</a></li>
-                    <li class="nav-item"><a href="/jaunumi"
-                            class="nav-link {% if aktiva_lapa == 'jaunumi' %} active {% endif %}">Galerija</a></li>
+                            class="nav-link">Sākums</a></li>
+                    
+                        </li>
+                        <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Galerijas
+                          </a>
+                          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#">ASV</a></li>
+                            <li><a class="dropdown-item" href="#">Indija</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#">Maroka</a></li>
+                          </ul>
+                        </li>
                     <li class="nav-item"><a href="/par_mani"
-                            class="nav-link {% if aktiva_lapa == 'par_mani' %} active {% endif %}">Par mani</a></li>
+                            class="nav-link">Par mani</a></li>
                     <li class="nav-item"><a href="/kontakti"
-                            class="nav-link {% if aktiva_lapa == 'kontakti' %} active {% endif %}">Kontakti</a></li>
-                </ul>
-            </header>
-
+                            class="nav-link">Kontakti</a></li>
+                </nav>
+    </div>
+</header>
         <main>
+            <div>
             {% block saturs %}
 
             {% endblock %}
+            
 
         </main>
 

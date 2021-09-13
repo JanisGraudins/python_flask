@@ -1,7 +1,6 @@
 from flask import Flask, render_template, request, redirect
-from flask.scaffold import F
-from file_proc import pievienot
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import create_engine
 from datetime import datetime
 
 app = Flask(__name__)
