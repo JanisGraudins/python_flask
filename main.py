@@ -6,15 +6,12 @@ from datetime import datetime
 app = Flask(__name__)
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.ieraksti'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///ieraksti.db'
 
 
 db = SQLAlchemy(app)
+#db.create_all()
 dati = []
-
-
-
-
 
 class Ieraksti(db.Model):
     id = db.Column(db.Integer, primary_key=True)
