@@ -1,6 +1,5 @@
 from flask import Flask, render_template, request, redirect
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import create_engine
 from datetime import datetime
 
 app = Flask(__name__)
@@ -20,7 +19,7 @@ class Ieraksti(db.Model):
     epasts = db.Column(db.String(100), nullable=False)
     datums = db.Column(db.DateTime, default=datetime.now)
     def __repr__(self):
-        return '<Vards %r>' % self.id
+        return f"Ieraksti('{self.vards}', '{self.uzvards}', '{self.epasts}', '{self.datums}')"
 
 
 
@@ -28,6 +27,22 @@ class Ieraksti(db.Model):
 def home():
     return render_template('home.html')
 
+@app.route('/results', methods=["POST", "GET"]) 
+def results():
+    vards = Request.form['vards']
+    uzvards = request.form['uzvards']
+    epasts = request.form['epasts']
+    datums = request.form['datums']
+    jauns_vards = Ieraksti(name=vards)
+    jauns_uzvards = Ieraksti(name=uzvards)
+    jauns_epasts = Ieraksti(name=epasts)
+    jauns_datums = Ieraksti(name=datums)
+
+    db.session.add()
+    db.session.commit()
+
+    ieraksti = Ieraksti.query
+    return render_template('results.html')
 
 @app.route('/kontakti')
 def kontakti():

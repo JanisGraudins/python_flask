@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+{% set aktiva_lapa = 'home' %}
+
+{% block saturs %}
+<br/>
+<h1 style="text-align:center">Rezultāti</h1>
+<br/>
+<div>   
+    <h3 style="text-align:center; color:rgb(40, 123, 218)">Šobrīd datu bāzē ir saglabāti šādi ieraksti</h3>
+    <br/>
+    <form>
+        {% for dati in dati %}
+            {{dati.vards, dati.uzvards, dati.epasts, dati.datums}}
+        {% endfor %}
+
+    </form>
+</div> 
+{% endblock %}
