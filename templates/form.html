@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 
-{% set aktiva_lapa = 'jaunumi' %}
+<!-- {% set aktiva_lapa = 'jaunumi' %} -->
 
 {% block saturs %}
 
@@ -10,6 +10,20 @@
 <h2 style="text-align:center; color: rgb(124, 206, 31)">Tavs ieguldījums man ir ļoti svarīgs</h2>
 <br>
 
-<div>{{ dati }}
-</div>
 {% endblock %}
+<!doctype html> 
+<html> 
+    <body> 
+    
+        <table border = 1> 
+            {% for key, value in result.iteritems() %} 
+        
+                <tr> 
+                    <th> {{ key }} </th> 
+                    <td> {{ value }} </td> 
+                </tr> 
+           
+       {% endfor %} 
+    </table>       
+ </body> 
+ </html> 
