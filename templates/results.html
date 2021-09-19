@@ -9,11 +9,24 @@
 <div>   
     <h3 style="text-align:center; color:rgb(40, 123, 218)">Šobrīd datu bāzē ir saglabāti šādi ieraksti</h3>
     <br/>
-    <form>
-        {% for dati in dati %}
-            {{dati.vards, dati.uzvards, dati.epasts, dati.datums}}
-        {% endfor %}
-
-    </form>
+    <div>
+    <table class="table">
+        <tr>
+            <th>Vārds</th>
+            <th>Uzvārds</th>
+            <th>E-pasts</th>
+                    </tr>
+    {% for sock in socks %}
+			<tr>
+				<td>{{ sock.name }}</td>
+				<td>{{ sock.color }}</td>
+				<td>${{ sock.price }}</td>
+				<td>{{ sock.quantity }}</td>
+				<td>{{ sock.updated }}</td>
+			</tr>
+    </table>
+    </div>
+	{% endfor %}
+    </table>
 </div> 
 {% endblock %}
