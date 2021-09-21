@@ -69,17 +69,25 @@ def indija():
 
 @app.route('/form', methods=["POST", "GET"]) 
 def form():
-    vards = request.form.get['vards']
-    uzvards = request.form.get['uzvards']
-    epasts = request.form.get['epasts']
+    # vards = request.form.get['vards']
+    # uzvards = request.form.get['uzvards']
+    # epasts = request.form.get['epasts']
     title = "Paldies!"
-    return render_template('form.html', vards=vards, uzvards=uzvards, epasts=epasts)
+    return render_template('form.html')
 
-@app.route('/result',methods = ['POST', 'GET']) 
-def result(): 
-   if request.method == 'POST': 
-      result = request.form 
-      return render_template("result.html",result = result) 
+@app.route('/postData', methods = ['POST', 'GET'])
+def postData():
+    if request.method == 'GET':
+        return redirect('/')
+    elif request.method == 'POST':
+        print(request.form)
+        vards = request.form.get('vards')
+        uzvards = request.form.get['uzvards']
+        epasts = request.form.get['epasts']
+        pievienot(vards, uzvards, epasts)
+        return redirect('/form')
+    else:
+        return "This method not supported!"
 
 
 # pārbaudu konekciju ar DB
