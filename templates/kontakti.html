@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 
-{% set aktiva_lapa = 'kontakti' %}
+<!-- {% set aktiva_lapa = 'kontakti' %} -->
 
 {% block saturs %}
 <br>
@@ -10,21 +10,21 @@
   Progresīvajās programmēšanas metodes būtu dati, ko attēlot! </h3>
 <body>
   <div>
-    <form class="col-lg-8 mx-auto p-3 py-md-5" action="/form" method="POST">
+    <form class="col-lg-8 mx-auto p-3 py-md-5" action="result" method="POST">
       <div class="mb-3">
       
-        <input type="text" class="form-control" id="lauks1" 
+        <input type="text" class="form-control" 
         placeholder="Vārds" name="vards"
       </div>
   </br>
       <div class="mb-3">
-          <input type="text" class="form-control" id="lauks2" 
+          <input type="text" class="form-control" 
           placeholder="Uzvārds" name="uzvards"
           
       </div>
   </br>
         <div class="mb-3">
-         <input type="email" class="form-control" id="lauks3" 
+         <input type="email" class="form-control" 
           placeholder="E-pasta adrese" name="epasts"
       </div>
       
@@ -34,10 +34,10 @@
     </form>
   {% endblock %}
 
-  vards = request.form.get("vards")
+  <!-- vards = request.form.get("vards")
     pievienot(vards)
     uzvards = request.form.get("uzvards")
     pievienot(uzvards)
     epasts = request.form.get("epasts")
     pievienot(epasts)
-    dati.append(F"{vards} {uzvards} {epasts}")
+    dati.append(F"{vards} {uzvards} {epasts}") -->

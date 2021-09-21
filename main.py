@@ -1,9 +1,10 @@
-from file_proc import pievienot, lasitRindinas
 from flask import Flask, render_template, request, redirect
+from file_proc import pievienot, lasitRindinas
+
 # from flask_sqlalchemy import SQLAlchemy
 # from sqlalchemy.sql import text
 # from flask_wtf import FlaskForm
-from flask_bootstrap import Bootstrap
+# from flask_bootstrap import Bootstrap
 
 # from wtforms import SubmitField, SelectField, RadioField, HiddenField, StringField, IntegerField, FloatField
 # from wtforms.validators import InputRequired, Length, Regexp, NumberRange
@@ -22,7 +23,7 @@ app = Flask(__name__)
 
 #db.create_all()
 
-dati = []
+# dati = []
 
 @app.route('/')
 def home():
@@ -45,12 +46,9 @@ def home():
 
 @app.route('/kontakti', methods=["POST", "GET"])
 def kontakti():
-        #print(request.form)
-    ieraksts = request.form.get('vards', 'uzvards', 'epasts')
-    pievienot(ieraksts)
-   
-# return redirect('/form')
-    
+    #print(request.form)
+    # ieraksts = request.form.get('vards', 'uzvards', 'epasts')
+    # pievienot(ieraksts)
     return render_template('kontakti.html')
 
 @app.route('/par_mani')
@@ -61,16 +59,21 @@ def par_mani():
 def dati():
     return render_template('dati.html')
 
-@app.route('/jaunumi')
-def jaunumi():
-    return render_template('jaunumi.html')
+@app.route('/asv', methods = ['GET'])
+def asv():
+    return render_template('asv.html')
 
+@app.route('/indija', methods = ['GET'])
+def indija():
+    return render_template('indija.html')
 
-@app.route('/form', methods=["POST"]) 
+@app.route('/form', methods=["POST", "GET"]) 
 def form():
-    
+    vards = request.form.get['vards']
+    uzvards = request.form.get['uzvards']
+    epasts = request.form.get['epasts']
     title = "Paldies!"
-    return render_template('form.html')
+    return render_template('form.html', vards=vards, uzvards=uzvards, epasts=epasts)
 
 @app.route('/result',methods = ['POST', 'GET']) 
 def result(): 
