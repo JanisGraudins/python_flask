@@ -1,8 +1,9 @@
 from flask import Flask, render_template, request, redirect
 # from file_proc import pievienot, lasitRindinas
 from file_proc import pievienot, lasitRindinas
-# import pandas as pd
+import pandas as pd
 import csv
+# from prettytable import PrettyTable 
 
 # from flask_sqlalchemy import SQLAlchemy
 # from sqlalchemy.sql import text
@@ -60,6 +61,17 @@ def par_mani():
 
 @app.route('/dati', methods=["POST", "GET"])
 def dati():
+    # file = open("dati.csv")
+    # file = file.readlines()
+    # head = file[0]
+    # head = head.split(',')
+    # table = PrettyTable([head[0], head[1],head[2]]) 
+    # for i in range(1, len(file)) : 
+    #     table.add_row(file[i].split(','))
+    # htmlCode = table.get_html_string() 
+    # final_htmlFile = open('dati.html', 'w') 
+    # final_htmlFile=final_htmlFile.write(htmlCode)
+
     return render_template('dati.html')
 
 @app.route('/asv', methods = ['GET'])
@@ -79,13 +91,17 @@ def form():
     saraksts = list((vards, uzvards, epasts))
     print(saraksts)
 
-   
-    header = ['Vārds', 'Uzvārds', 'E-pasts']
-    row = saraksts
-    with open('dati.csv', 'a+', encoding="utf-8") as f:
-        write = csv.writer(f)
-        write.writerow(header)
-        write.writerows(row)
+ 
+    df = pd.DataFrame([saraksts])
+    df.to_csv('dati2.csv', mode='a', index=False, header=False)
+
+
+    # header = ['Vārds', 'Uzvārds', 'E-pasts']
+    # row = list((vards, uzvards, epasts))
+    # with open('dati.csv', 'a', encoding="utf-8") as f:
+    #     write = csv.writer(f)
+    #     # write.writerow(header)
+    #     write.writerows(row)
 
     # pievienot(saraksts)
     title = "Paldies!"
@@ -96,10 +112,10 @@ def postData():
     if request.method == 'GET':
         return redirect('/')
     elif request.method == 'POST':
-        vards = request.form.get('vards')
-        uzvards = request.form.get('uzvards')
-        epasts = request.form.get('epasts')
-        print(vards, uzvards, epasts)
+        # vards = request.form.get('vards')
+        # uzvards = request.form.get('uzvards')
+        # epasts = request.form.get('epasts')
+        # print(vards, uzvards, epasts)
         # pievienot(vards)
         
         return redirect('/form')
