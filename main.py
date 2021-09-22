@@ -1,5 +1,7 @@
 from flask import Flask, render_template, request, redirect
+# from file_proc import pievienot, lasitRindinas
 from file_proc import pievienot, lasitRindinas
+
 
 # from flask_sqlalchemy import SQLAlchemy
 # from sqlalchemy.sql import text
@@ -69,9 +71,13 @@ def indija():
 
 @app.route('/form', methods=["POST", "GET"]) 
 def form():
-    # vards = request.form.get['vards']
-    # uzvards = request.form.get['uzvards']
-    # epasts = request.form.get['epasts']
+    vards = request.form.get('vards')
+    uzvards = request.form.get('uzvards')
+    epasts = request.form.get('epasts')
+    print(vards, uzvards, epasts)
+    rindina = list((vards, uzvards, epasts))
+    # pievienot(rindina)
+    print(rindina)
     title = "Paldies!"
     return render_template('form.html')
 
@@ -80,11 +86,12 @@ def postData():
     if request.method == 'GET':
         return redirect('/')
     elif request.method == 'POST':
-        print(request.form)
         vards = request.form.get('vards')
-        uzvards = request.form.get['uzvards']
-        epasts = request.form.get['epasts']
-        pievienot(vards, uzvards, epasts)
+        uzvards = request.form.get('uzvards')
+        epasts = request.form.get('epasts')
+        print(vards, uzvards, epasts)
+        # pievienot(vards)
+        
         return redirect('/form')
     else:
         return "This method not supported!"
