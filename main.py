@@ -1,10 +1,9 @@
 from flask import Flask, render_template, request, redirect
-# from file_proc import pievienot, lasitRindinas
-from file_proc import pievienot, lasitRindinas
 import pandas as pd
 import csv
-# from prettytable import PrettyTable 
+import shutil
 
+# from prettytable import PrettyTable 
 # from flask_sqlalchemy import SQLAlchemy
 # from sqlalchemy.sql import text
 # from flask_wtf import FlaskForm
@@ -50,29 +49,28 @@ def home():
 
 @app.route('/kontakti', methods=["POST", "GET"])
 def kontakti():
-    #print(request.form)
-    # ieraksts = request.form.get('vards', 'uzvards', 'epasts')
-    # pievienot(ieraksts)
     return render_template('kontakti.html')
 
 @app.route('/par_mani')
 def par_mani():
     return render_template('par_mani.html')
 
-@app.route('/dati', methods=["POST", "GET"])
+@app.route('/dati2', methods=["POST", "GET"])
 def dati():
-    # file = open("dati.csv")
-    # file = file.readlines()
-    # head = file[0]
-    # head = head.split(',')
-    # table = PrettyTable([head[0], head[1],head[2]]) 
-    # for i in range(1, len(file)) : 
-    #     table.add_row(file[i].split(','))
-    # htmlCode = table.get_html_string() 
-    # final_htmlFile = open('dati.html', 'w') 
-    # final_htmlFile=final_htmlFile.write(htmlCode)
+    file = pd.read_csv("dati2.csv")
+    file.to_html("dati2.html")
+    html_file = file.to_html()
+    original = r'E:\JK\Pedejais\python_flask\dati2.html'
+    target = r'E:\JK\Pedejais\python_flask\templates\dati2.html'
+    shutil.copyfile(original, target)
+   
 
-    return render_template('dati.html')
+    # print(html_file)
+    return render_template('dati2.html')
+
+# @app.route('/dati2')
+# def dati2():
+#     return render_template('dati2.html')
 
 @app.route('/asv', methods = ['GET'])
 def asv():
@@ -87,23 +85,11 @@ def form():
     vards = request.form.get('vards')
     uzvards = request.form.get('uzvards')
     epasts = request.form.get('epasts')
-    print(vards, uzvards, epasts)
+    # print(vards, uzvards, epasts)
     saraksts = list((vards, uzvards, epasts))
-    print(saraksts)
-
- 
+    # print(saraksts)
     df = pd.DataFrame([saraksts])
     df.to_csv('dati2.csv', mode='a', index=False, header=False)
-
-
-    # header = ['Vārds', 'Uzvārds', 'E-pasts']
-    # row = list((vards, uzvards, epasts))
-    # with open('dati.csv', 'a', encoding="utf-8") as f:
-    #     write = csv.writer(f)
-    #     # write.writerow(header)
-    #     write.writerows(row)
-
-    # pievienot(saraksts)
     title = "Paldies!"
     return render_template('form.html')
 
@@ -111,13 +97,7 @@ def form():
 def postData():
     if request.method == 'GET':
         return redirect('/')
-    elif request.method == 'POST':
-        # vards = request.form.get('vards')
-        # uzvards = request.form.get('uzvards')
-        # epasts = request.form.get('epasts')
-        # print(vards, uzvards, epasts)
-        # pievienot(vards)
-        
+    elif request.method == 'POST':  
         return redirect('/form')
     else:
         return "This method not supported!"
@@ -152,20 +132,6 @@ def postData():
 #     uzvards = StringField('uzvards')
 #     epasts = StringField('epasts')
 #     pievienot = SubmitField('Pievienot')
-
-# @app.route('/pievienot', methods=['GET', 'POST'])
-# def add_record():
-#     form1 = AddRecord()
-#     if form1.validate_on_submit():
-#             vards = request.form['vards']
-#             uzvards = request.form['uzvards']
-#             epasts = request.form['epasts']
-#             record = Ieraksts(vards, uzvards, epasts)
-#             db.session.add(record)
-#             db.session.commit()
-#     else:
-    
-#         return render_template('pievienot.html')
 
 @app.errorhandler(404)
 def page_not_found(e):

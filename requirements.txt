@@ -1,5 +1,5 @@
 Flask
-SQLAlchemy
-Bootstrap
-flask_wtf
+Pandas
+CSV
+
 
