@@ -1,7 +1,8 @@
 from flask import Flask, render_template, request, redirect
 # from file_proc import pievienot, lasitRindinas
 from file_proc import pievienot, lasitRindinas
-
+# import pandas as pd
+import csv
 
 # from flask_sqlalchemy import SQLAlchemy
 # from sqlalchemy.sql import text
@@ -75,9 +76,18 @@ def form():
     uzvards = request.form.get('uzvards')
     epasts = request.form.get('epasts')
     print(vards, uzvards, epasts)
-    rindina = list((vards, uzvards, epasts))
-    # pievienot(rindina)
-    print(rindina)
+    saraksts = list((vards, uzvards, epasts))
+    print(saraksts)
+
+   
+    header = ['Vārds', 'Uzvārds', 'E-pasts']
+    row = saraksts
+    with open('dati.csv', 'a+', encoding="utf-8") as f:
+        write = csv.writer(f)
+        write.writerow(header)
+        write.writerows(row)
+
+    # pievienot(saraksts)
     title = "Paldies!"
     return render_template('form.html')
 

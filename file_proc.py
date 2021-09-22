@@ -1,8 +1,8 @@
 FILE_NAME = "data.txt"
 
-def pievienot(rindina):
+def pievienot(saraksts):
     f = open(FILE_NAME, 'a', encoding="utf-8")
-    f.write(rindina + '\n')
+    f.write(saraksts + '\n')
     f.close()
 
 def lasitRindinas():
