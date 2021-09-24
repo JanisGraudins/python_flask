@@ -2,7 +2,7 @@ body {
     background-image: url(/static/img/v2.jpg);
     background-position: fit;
     background-repeat: no-repeat;
-    background-size: fit;
+    background-size: cover;
     background-attachment: fixed;
     background-color:grey;
   }
