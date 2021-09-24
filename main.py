@@ -55,7 +55,7 @@ def kontakti():
 def par_mani():
     return render_template('par_mani.html')
 
-@app.route('/dati2', methods=["POST", "GET"])
+@app.route('/sviests', methods=["POST", "GET"])
 def dati():
     file = pd.read_csv("dati2.csv")
     file.to_html("dati2.html")
@@ -64,13 +64,8 @@ def dati():
     target = r'E:\JK\Pedejais\python_flask\templates\dati2.html'
     shutil.copyfile(original, target)
    
-
     # print(html_file)
-    return render_template('dati2.html')
-
-# @app.route('/dati2')
-# def dati2():
-#     return render_template('dati2.html')
+    return render_template('sviests.html')
 
 @app.route('/asv', methods = ['GET'])
 def asv():
@@ -132,6 +127,10 @@ def postData():
 #     uzvards = StringField('uzvards')
 #     epasts = StringField('epasts')
 #     pievienot = SubmitField('Pievienot')
+
+# @app.route('/sviests', methods = ['GET'])
+# def sviests():
+#     return render_template('sviests.html')
 
 @app.errorhandler(404)
 def page_not_found(e):
